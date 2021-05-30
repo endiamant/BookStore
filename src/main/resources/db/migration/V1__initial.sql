@@ -19,8 +19,18 @@ CREATE TABLE users_roles_23
 );
 CREATE table roles_priveleges
 (
-    id serial primary key,
+    id   serial primary key,
     name integer NOT NULL
 );
-
+Create TABLE book
+(
+    id              serial primary key,
+    title           varchar(255) not NULL,
+    author          varchar(255) not NULL,
+    publisher       varchar(255) not NULL,
+    publicationDate varchar(255) not NULL,
+    language        varchar(255) not NULL,
+    category        varchar(255) not NULL,
+    numberOfPages   int
+);
 

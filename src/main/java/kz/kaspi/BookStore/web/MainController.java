@@ -11,13 +11,19 @@ public class MainController {
         return "homepage";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/home")
     public String login(Model model) {
-        return "login";
+        return "homepage";
     }
 
     @GetMapping("/user")
     public String userIndex() {
         return "user/index";
     }
+
+    @GetMapping("/book")
+    public String book() {
+        return "bookList";
+    }
+
 }
