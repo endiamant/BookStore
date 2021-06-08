@@ -1,6 +1,5 @@
 package kz.kaspi.BookStore.controller;
 
-
 import kz.kaspi.BookStore.model.Book;
 import kz.kaspi.BookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,24 +21,16 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/book")
-public class LoginController {
+public class BookController {
 
     @Autowired
     private BookService bookService;
 
-    @RequestMapping("/")
-    public String viewHomePage(Model model) {
-        List<Book> listBooks = bookService.findAll();
-        model.addAttribute("listBooks", listBooks);
-
-        return "index";
-    }
-    @RequestMapping("/add")
-    public String showNewProductForm(Model model) {
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addBook(Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-
-        return "add";
+        return "addBook";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -77,18 +68,18 @@ public class LoginController {
         return "updateBook";
     }
 
-    @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
+    @RequestMapping(value="/updateBook", method=RequestMethod.POST)
     public String updateBookPost(@ModelAttribute("book") Book book, HttpServletRequest request) {
         bookService.save(book);
 
         MultipartFile bookImage = book.getBookImage();
 
-        if (!bookImage.isEmpty()) {
+        if(!bookImage.isEmpty()) {
             try {
                 byte[] bytes = bookImage.getBytes();
                 String name = book.getId() + ".png";
 
-                Files.delete(Paths.get("src/main/resources/static/image/book/" + name));
+                Files.delete(Paths.get("src/main/resources/static/image/book/"+name));
 
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(new File("src/main/resources/static/image/book/" + name)));
@@ -98,8 +89,10 @@ public class LoginController {
                 e.printStackTrace();
             }
         }
-        return "redirect:/book/bookInfo?id=" + book.getId();
+
+        return "redirect:/book/bookInfo?id="+book.getId();
     }
+
     @RequestMapping("/bookList")
     public String bookList(Model model) {
         List<Book> bookList = bookService.findAll();
@@ -107,6 +100,7 @@ public class LoginController {
 
         return "bookList";
     }
+
     @RequestMapping(value="/remove", method=RequestMethod.POST)
     public String remove(
             @ModelAttribute("id") String id, Model model

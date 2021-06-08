@@ -19,7 +19,8 @@
 	
 	<h1>Book Store</h1>
 	<div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">
-		<a href="add">Create New Book</a>
+		<a th:href="@{/book/bookList}">View BookList</a>
+		<a th:href="@{/book/add}">Add New Book</a>
 	</div>
 	
 	<br/><br/>
@@ -42,15 +43,15 @@
 		</thead>
 		<tbody>
 
-			<tr th:each="book : ${listBooks}">
-				<td th:text="${book.title}">title</td>
-				<td th:text="${book.author}">author</td>
-				<td th:text="${book.publisher}">publisher</td>
-				<td th:text="${book.publicationDate}">publicationDate</td>
-				<td th:text="${book.language}">language</td>
-				<td th:text="${book.ourPrice}">ourPrice</td>
-				<td th:text="${book.numberOfPages}">numberOfPages</td>
-				<td th:text="${book.inStockNumber}">inStockNumber</td>
+<!--			<tr th:each="book : ${listBooks}">-->
+<!--				<td th:text="${book.title}">title</td>-->
+<!--				<td th:text="${book.author}">author</td>-->
+<!--				<td th:text="${book.publisher}">publisher</td>-->
+<!--				<td th:text="${book.publicationDate}">publicationDate</td>-->
+<!--				<td th:text="${book.language}">language</td>-->
+<!--				<td th:text="${book.ourPrice}">ourPrice</td>-->
+<!--				<td th:text="${book.numberOfPages}">numberOfPages</td>-->
+<!--				<td th:text="${book.inStockNumber}">inStockNumber</td>-->
 
 				<td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
 					<a th:href="@{'/updateBook/' + ${book.id}}">Edit</a>
