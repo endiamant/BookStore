@@ -1,26 +1,23 @@
-CREATE TABLE role
+CREATE TABLE users
 (
-    id   serial primary key,
-    name varchar(255) not NULL
+    user_id   serial primary key,
+    email     varchar(255) NOT NULL,
+    full_name varchar(225) NOT NULL,
+    username varchar(225) NOT NULL,
+    password  varchar(225) NOT NULL,
+    enabled   int
 );
 
-CREATE TABLE purchaser
+CREATE TABLE role
 (
-    id         serial primary key,
-    email      varchar(255) not NULL,
-    first_name varchar(255) not NULL,
-    last_name  varchar(255) not NULL,
-    password   varchar(255) not NULL
+    role_id serial primary key,
+    role    varchar(255) not NULL
 );
-CREATE TABLE users_roles_23
+
+create table user_role
 (
     user_id serial primary key,
-    role_id integer NOT NULL
-);
-CREATE table roles_priveleges
-(
-    id   serial primary key,
-    name integer NOT NULL
+    role_id serial
 );
 Create TABLE book
 (
@@ -33,4 +30,3 @@ Create TABLE book
     category        varchar(255) not NULL,
     numberOfPages   int
 );
-

@@ -1,92 +1,72 @@
 package kz.kaspi.BookStore.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "purchaser", schema = "PUBLIC")
-
+@Table(name = "users")
 public class User {
+
     @Id
-    @SequenceGenerator(name = "purchaser_id_seq",
-            sequenceName = "purchaser_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "purchaser_id_seq")
-    @Column(name = "id", updatable = false)
-    private Integer id;
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String username;
     private String password;
+    private boolean enabled;
 
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles_23",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
-    public User() {
-    }
-
-    public User(String firstName,
-                String lastName,
-                String email,
-                String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-
-    }
-
-    public User(String firstName,
-                String lastName,
-                String email,
-                String password,
-                Collection<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserShipping> userShippingList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+    public List<UserShipping> getUserShippingList() {
+        return userShippingList;
+    }
+    public void setUserShippingList(List<UserShipping> userShippingList) {
+        this.userShippingList = userShippingList;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public List<Order> getOrderList() {
+        return orderList;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+    public String getUsername() {
+        return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -97,26 +77,20 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + "*********" + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
 }
-
-
-
