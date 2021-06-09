@@ -121,17 +121,38 @@
               aria-expanded="false"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
         <span class="icon-bar"></span> <span class="icon-bar"></span></button>
 
-      <a class="navbar-brand" th:href="@{/}">Admin Portal</a>
 
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
-               aria-haspopup="true" aria-expanded="false">Book </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" th:href="@{/book/add}">Add a new book</a>
-              <a class="dropdown-item" th:href="@{/book/bookList}">View book list</a>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')" class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a  th:href="@{/bookList}" class="nav-item nav-link" href="#">View BookList</a>
+            <a th:href="@{/add}"  class="nav-item nav-link" href="#">Add New Book</a>
+          </div>
+        </div>
+      </nav>
+
+<!--      -->
+<!--      <a class="navbar-brand" th:href="@{/}">Admin Portal</a>-->
+
+<!--      <div class="collapse navbar-collapse">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--          <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"-->
+<!--               aria-haspopup="true" aria-expanded="false">Book </a>-->
+<!--            <div class="dropdown-menu">-->
+<!--              <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">-->
+<!--                <a th:href="@{/bookList}">View BookList</a>-->
+<!--                <a th:href="@{/add}">Add New Book</a>-->
+<!--              </div>-->
+
+<!--              <a class="dropdown-item" th:href="@{/book/add}">Add a new book</a>-->
+<!--              <a class="dropdown-item" th:href="@{/book/bookList}">View book list</a>-->
+<!--            </div>-->
           </li>
         </ul>
         <ul class="nav navbar-nav">

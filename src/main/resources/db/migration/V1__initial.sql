@@ -19,14 +19,3 @@ create table user_role
     user_id serial primary key,
     role_id serial
 );
-Create TABLE book
-(
-    id              serial primary key,
-    title           varchar(255) not NULL,
-    author          varchar(255) not NULL,
-    publisher       varchar(255) not NULL,
-    publicationDate varchar(255) not NULL,
-    language        varchar(255) not NULL,
-    category        varchar(255) not NULL,
-    numberOfPages   int
-);

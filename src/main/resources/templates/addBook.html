@@ -13,7 +13,7 @@
 <div th:replace="common/header :: navbar"/>
 
 <div class="container">
-	<form th:action="@{/book/add}" method="post" enctype="multipart/form-data">
+	<form th:action="@{/add}" method="post" enctype="multipart/form-data">
 		<fieldset>
 			<legend class="center-block">New Book Information<span
 					style="font-size: small"> * is a required field</span></legend>
@@ -58,7 +58,7 @@
 
 				<div class="col-md-8">
 					<input type="date" class="form-control" id="publicationDate" name="publicationDate"
-						   th:value="${book.publicationDate}" placeholder="ublication Date"/>
+						   th:value="${book.publicationDate}" placeholder="publication Date"/>
 					<span class="text-muted">PublicationDate of the book</span>
 				</div>
 			</div>

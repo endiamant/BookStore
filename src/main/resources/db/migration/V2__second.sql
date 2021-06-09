@@ -4,12 +4,8 @@ Create TABLE book
     title           varchar(255) not NULL,
     author          varchar(255) not NULL,
     publisher       varchar(255) not NULL,
-    publicationDate varchar(255) not NULL,
     language        varchar(255) not NULL,
     category        varchar(255) not NULL,
-    numberOfPages   int,
-    ourPrice float ,
-    inStockNumber int
 );
 create table cart_item
 (
