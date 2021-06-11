@@ -1,5 +1,6 @@
 package kz.kaspi.BookStore.controller;
 
+
 import kz.kaspi.BookStore.model.Book;
 import kz.kaspi.BookStore.model.CartItem;
 import kz.kaspi.BookStore.model.ShoppingCart;
@@ -9,6 +10,7 @@ import kz.kaspi.BookStore.service.CartItemService;
 import kz.kaspi.BookStore.service.ShoppingCartService;
 import kz.kaspi.BookStore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/shoppingCart")
+@Controller
+@RequestMapping("/")
 public class ShoppingCartController {
 
     @Autowired
@@ -32,7 +35,7 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    @RequestMapping("/cart")
+    @RequestMapping("/shoppingCart")
     public String shoppingCart(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         ShoppingCart shoppingCart = user.getShoppingCart();
@@ -44,7 +47,7 @@ public class ShoppingCartController {
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", shoppingCart);
 
-        return "shoppingCart";
+        return "forward:/shoppingCart";
     }
 
     @RequestMapping("/addItem")
@@ -56,15 +59,15 @@ public class ShoppingCartController {
         User user = userService.findByUsername(principal.getName());
         book = bookService.findOne(book.getId());
 
-        if (Integer.parseInt(qty) > book.getInStockNumber()) {
+        if(Integer.parseInt(qty) > book.getInStockNumber()) {
             model.addAttribute("notEnoughStock", true);
-            return "forward:/bookDetail?id=" + book.getId();
+            return "forward:/bookDetail?id="+book.getId();
         }
 
         CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 
-        return "forward:/bookDetail?id=" + book.getId();
+        return "forward:/bookDetail?id="+book.getId();
     }
 
     @RequestMapping("/updateCartItem")
@@ -76,13 +79,13 @@ public class ShoppingCartController {
         cartItem.setQty(qty);
         cartItemService.updateCartItem(cartItem);
 
-        return "forward:/shoppingCart/cart";
+        return "forward:/shoppingCart";
     }
 
     @RequestMapping("/removeItem")
     public String removeItem(@RequestParam("id") Long id) {
         cartItemService.removeCartItem(cartItemService.findById(id));
 
-        return "forward:/shoppingCart/cart";
+        return "forward:/cart";
     }
 }

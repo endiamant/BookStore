@@ -42,7 +42,7 @@
 
             <!--display products in cart-->
             <div th:each="cartItem : ${cartItemList}">
-                <form th:action="@{/shoppingCart/updateCartItem}" method="post">
+                <form th:action="@{/updateCartItem}" method="post">
 
                     <hr/>
 
@@ -51,7 +51,7 @@
                         <div class="form-group col-2">
                             <a th:href="@{bookDetail(id=${cartItem.book.id})}">
                                 <img class="img-fluid shelf-book mx-auto" style="width: 70px;"
-                                     th:src="#{adminPath}+@{/image/book/}+${cartItem.book.id}+'.png'" />
+                                     th:src="@{/image/book/}+${cartItem.book.id}+'.png'" />
                             </a>
                         </div>
 

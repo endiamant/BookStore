@@ -23,7 +23,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public Book findOne(Long id) {
-        return bookRepository.getOne(id);
+        return bookRepository.findById(id).get();
     }
 
     public void removeOne(Long id) {
