@@ -1,7 +1,7 @@
 package kz.kaspi.BookStore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kz.kaspi.BookStore.security.BookToCartItem;
+
 
 import javax.persistence.*;
 import java.math.BigDecimal;

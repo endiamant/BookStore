@@ -3,7 +3,7 @@ package kz.kaspi.BookStore.service.impl;
 import kz.kaspi.BookStore.model.*;
 import kz.kaspi.BookStore.repository.BookToCartItemRepository;
 import kz.kaspi.BookStore.repository.CartItemRepository;
-import kz.kaspi.BookStore.security.BookToCartItem;
+
 import kz.kaspi.BookStore.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -10,8 +10,14 @@ import java.util.List;
 @Table(name = "user_order")
 public class Order {
     @Id
-    @Column(name = "order_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "user_order_id_seq",
+            sequenceName = "user_order_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "user_order_id_seq")
+    @Column(name = "order_id", updatable = false)
+
+
     private Long id;
     private Date orderDate;
     private Date shippingDate;
