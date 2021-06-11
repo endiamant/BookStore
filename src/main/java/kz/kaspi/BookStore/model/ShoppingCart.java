@@ -13,6 +13,7 @@ public class ShoppingCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+@Column(name = "shopping_cart_id")
     private Long id;
     private BigDecimal GrandTotal;
 

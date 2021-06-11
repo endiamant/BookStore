@@ -5,7 +5,7 @@ Create TABLE book
     author          varchar(255) not NULL,
     publisher       varchar(255) not NULL,
     language        varchar(255) not NULL,
-    category        varchar(255) not NULL,
+    category        varchar(255) not NULL
 );
 create table cart_item
 (
@@ -15,7 +15,7 @@ create table cart_item
 );
 create table user_order
 (
-    id             serial primary key,
+    order_id             serial primary key,
     orderDate      DATE,
     shippingDate   DATE,
     shippingMethod DATE,
@@ -32,7 +32,7 @@ create table shipping_address
 );
 create table shopping_cart
 (
-    id         serial primary key,
+    shopping_cart_id         serial primary key,
     grandTotal decimal
 );
 create table user_shipping

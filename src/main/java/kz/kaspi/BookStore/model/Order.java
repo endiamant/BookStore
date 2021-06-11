@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "user_order")
 public class Order {
     @Id
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Date orderDate;

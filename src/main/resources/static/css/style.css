@@ -13,7 +13,7 @@ hr {
 }
 
 .banner {
-    background-image: url("/image/bgline.png");
+
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -27,7 +27,7 @@ hr {
 }
 
 .box {
-    border: 1px solid red;
+    border: 1px solid #0080ff;
 }
 
 .home-headline {

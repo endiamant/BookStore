@@ -65,7 +65,8 @@
                 <div class="col-md-8">
                     <select th:value="${book.language}" id="language" name="language" class="form-control">
                         <option value="english">English</option>
-                        <option value="spanish">Spanish</option>
+                        <option value="spanish">Russian</option>
+                        <option value="spanish">Kazakh</option>
                     </select>
                 </div>
             </div>
@@ -97,60 +98,9 @@
                 </div>
             </div>
 
-            <!-- format -->
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="format">Format</label>
 
-                <div class="col-md-8">
-                    <select th:value="${book.format}" id="format" name="format" class="form-control">
-                        <option value="paperback">Paperback</option>
-                        <option value="hardcover">Hardcover</option>
-                    </select>
-                </div>
-            </div>
 
-            <!-- isbn -->
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="isbn">ISBN</label>
 
-                <div class="col-md-8">
-                    <input type="text" name="isbn" class="form-control" id="isbn" th:value="${book.isbn}"
-                           placeholder="ISBN"/>
-                    <span class="text-muted">ISBN of the book</span>
-                </div>
-            </div>
-
-            <!-- shipping weight -->
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="shippingWeight">Shipping Weight</label>
-
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input th:value="${book.shippingWeight}" type="number" name="shippingWeight" step="0.01"
-                               class="form-control" id="shippingWeight" placeholder="Shipping Weight"/>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Ounces</span>
-                        </div>
-                    </div>
-                    <span class="text-muted">Shipping Weight of the book</span>
-                </div>
-            </div>
-
-            <!-- list price -->
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="listPrice">List Price</label>
-
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                        </div>
-                        <input th:value="${book.listPrice}" type="number" name="listPrice" step="0.01"
-                               class="form-control" id="listPrice" placeholder="List Price"/>
-                    </div>
-                    <span class="text-muted">List price of the book</span>
-                </div>
-            </div>
 
             <!-- our price -->
             <div class="form-group row">
