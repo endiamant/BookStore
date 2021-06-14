@@ -53,18 +53,18 @@ public class ShoppingCartController {
     @RequestMapping("/addItem")
     public String addItem(
             @ModelAttribute("book") Book book,
-            @ModelAttribute("qty") String qty,
+            @ModelAttribute("qty") Integer qty,
             Model model, Principal principal
     ) {
         User user = userService.findByUsername(principal.getName());
         book = bookService.findOne(book.getId());
 
-        if(Integer.parseInt(qty) > book.getInStockNumber()) {
+        if(qty > book.getInStockNumber()) {
             model.addAttribute("notEnoughStock", true);
             return "forward:/bookDetail?id="+book.getId();
         }
 
-        CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
+        CartItem cartItem = cartItemService.addBookToCartItem(book, user, qty);
         model.addAttribute("addBookSuccess", true);
 
         return "forward:/bookDetail?id="+book.getId();
